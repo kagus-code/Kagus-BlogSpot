@@ -1,5 +1,12 @@
 {% extends 'bootstrap/base.html'%}
 
+
+{% block styles %}
+{{super()}}
+{{ fontawesome_css() }}
+{% endblock %}
+<!-- Navbar block  -->
+
 {% block navbar %}
     {% include 'navbar.html'%}
 {% endblock %}

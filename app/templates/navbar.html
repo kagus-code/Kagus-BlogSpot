@@ -1,37 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <div class="navbar navbar-inverse" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Kagus-BlogSpot</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-              
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Sign out</a></li>
-                 
-                  <li><a href="#">Sign in</a></li>
-               
-                </ul>
-            </div>
-
-        </div>
+<div class="navbar navbar-inverse" role="navigation" style="background: linear-gradient(
+  248deg
+  , #4A51D3 -0.66%, #3FBCE7 100%);color: white;opacity: 0.8;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button
+        type="button"
+        class="navbar-toggle"
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"> <button class="btn btn-primary" type="submit">Kagus-BlogSpot</button> </a>
     </div>
-  </body>
-</html>
+    <div class="navbar-collapse collapse" style="font-size: large; color: white;">
+      <ul class="nav navbar-nav" >
+        <li><a  href="/"><button class="btn btn-primary" type="submit">Home</button></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated %}
+        <li><a href="#"> <i class="fa fa-user" aria-hidden="true"></i>  {{current_user.username}}</a></li>
+        <li><a href="{{url_for('auth.logout')}}">  Sign out  <i class="fa fa-sign-out"></i></a>      </li>
+        {% else %}
+        <li><a href="{{url_for('auth.login')}}">  <i class="fa fa-sign-in" aria-hidden="true"></i>   Sign in</a></li>
+        {%endif%}
+      </ul>
+    </div>
+  </div>
+</div>
