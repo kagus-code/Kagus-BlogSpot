@@ -6,6 +6,7 @@ from flask_fontawesome import FontAwesome
 from flask_login import LoginManager
 from flask_uploads import UploadSet,configure_uploads,IMAGES
 from flask_mail import Mail
+from flask_simplemde import SimpleMDE
 
 
 
@@ -18,6 +19,7 @@ login_manager.login_view = 'auth.login'
 fa = FontAwesome()
 photos = UploadSet('photos',IMAGES)
 mail = Mail()
+simple = SimpleMDE()
 
 def create_app(config_name):
 
@@ -32,6 +34,7 @@ def create_app(config_name):
     fa.init_app(app)
     configure_uploads(app,photos)
     mail.init_app(app)
+    simple.init_app(app)
 
     # blueprints
     from .main import main as main_blueprint

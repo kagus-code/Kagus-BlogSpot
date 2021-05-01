@@ -4,6 +4,7 @@ from .. import db,photos
 from . import main
 from flask_login import login_required,current_user
 from ..models import User,Blog
+import markdown2  
 
 @main.route('/')
 def index():
