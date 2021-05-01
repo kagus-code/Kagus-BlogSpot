@@ -2,7 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
-
+from datetime import datetime
 
 class User(UserMixin,db.Model):
 
@@ -14,6 +14,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String(255))
     role = db.Column(db.String(255))
+    blogs = db.relationship('Review',backref = 'user',lazy = "dynamic")
 
 
     def __repr__(self):
@@ -37,6 +38,34 @@ class User(UserMixin,db.Model):
 
     def __repr__(self):
         return f'User {self.username}'
+
+
+
+class Blog(db.Model):
+
+    __tablename__ = 'blogs'
+    id = db.Column(db.Integer,primary_key = True)
+    blog_title = db.Column(db.String)
+    blog_post = db.Column(db.String)
+
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    # comments = db.relationship('Comment', backref='user', lazy='dynamic')
+
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
+
+
+
+    def delete_blog(self):
+        db.session.delete(self)
+        db.session.commit()
+
+        
+
+    def __repr__(self):
+        return f'blog{self.blog_post}'  
     
 
 
