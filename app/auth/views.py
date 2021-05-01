@@ -12,7 +12,8 @@ def register():
 
 @auth.route('/login')
 def login():
-    pass
+    return render_template('auth/login.html')
+    
 
 
 @auth.route('/logout')
