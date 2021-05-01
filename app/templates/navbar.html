@@ -19,6 +19,7 @@
     <div class="navbar-collapse collapse" style="font-size: large; color: white;">
       <ul class="nav navbar-nav" >
         <li><a  href="/"><button class="btn btn-primary" type="submit">Home</button></a></li>
+        <li><a  href="{{url_for('main.submit_blog')}}"><button class="btn btn-primary" type="submit">Write</button></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated %}

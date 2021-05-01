@@ -14,7 +14,7 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String(255))
     role = db.Column(db.String(255))
-    blogs = db.relationship('Review',backref = 'user',lazy = "dynamic")
+    blogs = db.relationship('Blog',backref = 'user',lazy = "dynamic")
 
 
     def __repr__(self):

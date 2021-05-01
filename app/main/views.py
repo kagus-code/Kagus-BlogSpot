@@ -61,7 +61,7 @@ def submit_blog():
         blog_title = form.blog_title.data
 
         blog_post=form.blog_post.data
-        new_blog = blog(blog_title=blog_title,blog_post=blog_post,user = current_user)
+        new_blog = Blog(blog_title=blog_title,blog_post=blog_post,user = current_user)
 
         new_blog.save_blog()
 
