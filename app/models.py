@@ -90,6 +90,14 @@ class Comment(db.Model):
     def __repr__(self):
         return f'Comment:{self.comment}'    
 
+class Quote:
+    ''' Quote class to define Qouto object'''
+    def __init__(self,id,author,quote):
+        self.id= id
+        self.author= author
+        slef.quote = quote  
+
+
 
 
     
