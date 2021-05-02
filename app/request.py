@@ -22,22 +22,23 @@ def get_quotes():
 
     quotes_results = None
 
-    if get_quotes_response['quotes']:
-      quotes_results_list = get_quotes_response['quotes']
-      quotes_results =process_results(quotes_results_list)
+    if get_quotes_response:
+      quotes_results_list = get_quotes_response
+      quotes_results =quotes_results_list
 
   return quotes_results 
 
-def process_results(qoutes_list):
-  '''function to process qoutes results'''
-  quotes_results = []
-  for qoutes_item in qoutes_list:
-    id = qoutes_item.get('id')  
-    author = qoutes_item.get('author')
-    quote = qoutes_item.get('quote')
-    quotes_object = Quote(id,author,quote)
-    quotes_results.append(quotes_object)
+# def process_results(qoutes_list):
+#   '''function to process qoutes results'''
+#   quotes_results = []
+#   for qoutes_item in qoutes_list:
 
-  return quotes_results
+#     author = qoutes_item.get('author')
+#     id = qoutes_item.get('id')  
+#     quote = qoutes_item.get('quote')
+#     quotes_object = Quote(author,id,quote)
+#     quotes_results.append(quotes_object)
+
+#   return quotes_results
 
 

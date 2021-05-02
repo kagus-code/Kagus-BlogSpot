@@ -5,12 +5,19 @@ from . import main
 from flask_login import login_required,current_user
 from ..models import User,Blog,Comment
 import markdown2  
+from ..request import get_quotes
 
 @main.route('/')
 def index():
     all_blogs = Blog.query.all()
+    all_quotes = get_quotes()
+    author = all_quotes.get("author")
+    quote = all_quotes.get("quote")
+    print(quote)
+
+
     title = 'Kagus-BlogSpot Home Page'
-    return render_template('index.html', title = title, blogs = all_blogs)
+    return render_template('index.html', title = title, blogs = all_blogs,author=author,quote=quote)
 
 
 @main.route('/user/<uname>')

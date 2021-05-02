@@ -92,9 +92,10 @@ class Comment(db.Model):
 
 class Quote:
     ''' Quote class to define Qouto object'''
-    def __init__(self,id,author,quote):
-        self.id= id
+    def __init__(self,author,id,quote):
+        
         self.author= author
+        self.id= id
         slef.quote = quote  
 
 
