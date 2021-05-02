@@ -1,6 +1,7 @@
 import os
 
 class Config:
+    QUOTES_API_BASE_URL='http://quotes.stormconsultancy.co.uk/random.json'
     SECRET_KEY = '6a5b826c18f5db76e78adf63ecd0af76'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
         #  email configurations

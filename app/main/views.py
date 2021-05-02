@@ -94,6 +94,19 @@ def comments(blog_id):
         user_id = current_user._get_current_object().id
         new_comment = Comment(comment=comment,blog_id=blog_id, user_id = user_id)
         new_comment.save_comment()
-        return redirect(url_for('main.single_post',id=blog_id))
+        return redirect(url_for('main.comments',blog_id=blog_id))
 
     return render_template('comment.html',comments = display_blog_comments,the_blog=blog,form=form)    
+
+
+# @main.route('/delete_comment/<int:user_id>/<int:blog_id>')
+# @login_required
+# def delete_comment(user_id,blog_id):
+#     comment = Comment.query.get(id)
+#     blog = Blog.query.get(blog_id)
+#     print(comment)
+
+
+
+#     return redirect(url_for('main.comments',blog_id=blog_id))
+

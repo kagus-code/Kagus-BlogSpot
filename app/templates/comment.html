@@ -5,26 +5,51 @@
 
 
 {% block content%}
-<div class="container">
+
+
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-9">
-   {%if comments %}
-   <h1>Comments for this post </h1>
-        {% for post_c in comments%}
+
+
+      {%if comments %}
+      <h1 class="text-center">Comments for this post </h1>
+      {% for post_c in comments%}
         
-        <ul>
-          <li>
-            <p><b>{{post_c.comment}}</b></p>
-            <p>posted by {{post_c.user.username}}</p>
-          </li>
-        </ul>
-        <br><br><br>
-        {%endfor%}
-   {%else%}  
+
+      <div class="col-md-3">
+
+       
+      <div class="text-center" style="box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19); font-size: large; margin-left: 20px; max-width: 30rem; ">
+      <div class="card-header">
+        <br>
+        <h3> <a href="{{url_for('main.single_post',id=post_c.blog.id)}}"> Blog title : {{post_c.blog.blog_title}}</a> </h3>
+      </div>
+      <hr>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p>{{post_c.comment}}</p>
+          <hr>
+          <footer class="blockquote-footer">Posted by  {{post_c.user.username}}
+           <hr>
+            <p><a class="btn btn-danger" href="#" role="button"> Delete</a></p>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+
+  </div>
+
+    {%endfor%}
+    {%else%} 
+
+    <h1>Comments for this pitch are not available yet</h1>
    
-   <h1>Comments for this pitch are not available yet</h1>
-   
-   {%endif%}
+    {%endif%}
+
+
+
 
     </div>
     <div class="col-md-3">
