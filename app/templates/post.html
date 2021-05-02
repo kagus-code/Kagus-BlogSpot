@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+
+{% block content%}
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-4">
+     <p>qoutes here maybe</p> 
+    </div>
+
+    <div class="col-md-4">
+      <p>title of the blog here </p>
+      <hr>
+      <br><br>
+
+      {{format_review|safe}}
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+{%endblock%}

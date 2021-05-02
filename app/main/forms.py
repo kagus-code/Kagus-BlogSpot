@@ -10,7 +10,7 @@ class UpdateProfile(FlaskForm):
 class SubmitBlog(FlaskForm):
   blog_title = StringField('Title', validators = [Required()])
   
-  blog_post = TextAreaField ('Write your blog!!',validators = [Required()])   
+  blog_post = TextAreaField ('Write your blog!!')   
   submit = SubmitField('Submit')  
 
 class postComment(FlaskForm):

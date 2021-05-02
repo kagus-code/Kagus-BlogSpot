@@ -69,3 +69,12 @@ def submit_blog():
         return redirect(url_for('main.index'))
 
     return render_template ('submit_blog.html',blog_form=form)
+
+
+@main.route('/post/<int:id>')
+def single_post(id):
+    post=Blog.query.get(id)
+    if post is None:
+        abort(404)
+    format_post = markdown2.markdown(post.blog_post,extras=["code-friendly", "fenced-code-blocks"])
+    return render_template('post.html',post = post,format_post=format_post)
