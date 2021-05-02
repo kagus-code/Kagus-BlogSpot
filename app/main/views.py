@@ -3,13 +3,14 @@ from .forms import UpdateProfile,SubmitBlog,postComment
 from .. import db,photos
 from . import main
 from flask_login import login_required,current_user
-from ..models import User,Blog
+from ..models import User,Blog,Comment
 import markdown2  
 
 @main.route('/')
 def index():
+    all_blogs = Blog.query.all()
     title = 'Kagus-BlogSpot Home Page'
-    return render_template('index.html', title = title)
+    return render_template('index.html', title = title, blogs = all_blogs)
 
 
 @main.route('/user/<uname>')
@@ -74,7 +75,25 @@ def submit_blog():
 @main.route('/post/<int:id>')
 def single_post(id):
     post=Blog.query.get(id)
+    print (post)
     if post is None:
         abort(404)
     format_post = markdown2.markdown(post.blog_post,extras=["code-friendly", "fenced-code-blocks"])
     return render_template('post.html',post = post,format_post=format_post)
+
+
+@main.route('/comment/<int:blog_id>', methods = ['POST','GET'])
+@login_required
+def comments(blog_id):
+    form = postComment()
+    blog = Blog.query.get(blog_id)
+    display_blog_comments = Comment.query.filter_by(blog_id = blog_id).all()
+    if form.validate_on_submit():
+        comment = form.comment.data
+        blog_id = blog_id
+        user_id = current_user._get_current_object().id
+        new_comment = Comment(comment=comment,blog_id=blog_id, user_id = user_id)
+        new_comment.save_comment()
+        return redirect(url_for('main.single_post',id=blog_id))
+
+    return render_template('comments.html',comment_form=form,comments = display_blog_comments,the_blog=blog)    
