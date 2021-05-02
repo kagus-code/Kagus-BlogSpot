@@ -96,4 +96,4 @@ def comments(blog_id):
         new_comment.save_comment()
         return redirect(url_for('main.single_post',id=blog_id))
 
-    return render_template('comments.html',comment_form=form,comments = display_blog_comments,the_blog=blog)    
+    return render_template('comment.html',comments = display_blog_comments,the_blog=blog,form=form)    

@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+
+
+{% block content%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+   {%if comments %}
+   <h1>Comments for this post </h1>
+        {% for post_c in comments%}
+        
+        <ul>
+          <li>
+            <p><b>{{post_c.comment}}</b></p>
+            <p>posted by {{post_c.user.username}}</p>
+          </li>
+        </ul>
+        <br><br><br>
+        {%endfor%}
+   {%else%}  
+   
+   <h1>Comments for this pitch are not available yet</h1>
+   
+   {%endif%}
+
+    </div>
+    <div class="col-md-3">
+
+      {{wtf.quick_form(form)}}
+
+    </div>
+  </div>
+</div>
+
+{%endblock%}
