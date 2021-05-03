@@ -128,3 +128,28 @@ def delete_comment(user_id,blog_id):
 
     return redirect(url_for('main.comments',blog_id=blog_id))
 
+
+
+
+
+
+@main.route('/delete_blog/<int:user_id>/<int:blog_id>',methods = ['POST','GET'])
+@login_required
+def delete_blog(user_id,blog_id):
+    blog = Blog.query.get(blog_id)
+    user = Blog.query.get(user_id)
+    blog = Blog.query.filter_by(id=blog_id).first()
+    print(blog)
+
+    if user_id == current_user.id:
+
+        print(blog)
+        db.session.delete(blog)
+        db.session.commit()
+        return redirect(url_for('main.index'))
+
+    else:
+        print("you cant delete Blog")
+        flash('Cannot delete Blog,You are not the author of this blog')
+
+    return redirect(url_for('main.single_post',id=blog_id))
