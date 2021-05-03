@@ -1,5 +1,5 @@
 from flask import render_template, request,redirect, url_for,abort,flash
-from .forms import UpdateProfile,SubmitBlog,postComment
+from .forms import UpdateProfile,SubmitBlog,postComment,updateBlog
 from .. import db,photos
 from . import main
 from flask_login import login_required,current_user
@@ -146,13 +146,36 @@ def delete_blog(user_id,blog_id):
 
     if user_id == current_user.id:
 
-        print(blog)
+        
         db.session.delete(blog)
         db.session.commit()
         return redirect(url_for('main.index'))
 
     else:
-        print("you cant delete Blog")
-        flash('Cannot delete Blog,You are not the author of this blog')
+        flash('Cannot Delete Blog,You are not the author of this blog')
 
     return redirect(url_for('main.single_post',id=blog_id))
+
+
+
+@main.route('/update_blog/<int:user_id>/<int:blog_id>',methods = ['POST','GET'])
+@login_required
+def update_blog(user_id,blog_id):
+    form = updateBlog()
+    blog = Blog.query.get(blog_id)
+    user = Blog.query.get(user_id)
+    blog = Blog.query.filter_by(id=blog_id).first()
+    print(blog)
+
+    if user_id == current_user.id:
+        if form.validate_on_submit():
+            blog_post = blog_post=form.blog_post.data
+            Blog.query.filter_by(id=blog_id).update({"blog_post": blog_post})
+            db.session.commit()
+            return redirect(url_for('main.single_post',id=blog_id))
+
+    else:
+        flash('Cannot update Blog,You are not the author of this blog')
+        return redirect(url_for('main.single_post',id=blog_id))
+
+    return render_template('update.html',form =form)    

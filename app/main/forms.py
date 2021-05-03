@@ -17,3 +17,6 @@ class postComment(FlaskForm):
   comment   = TextAreaField ('Post a comment',validators = [Required()]) 
   submit = SubmitField('Post')
 
+class updateBlog(FlaskForm):
+  blog_post = TextAreaField ('update your blog!!',validators = [Required()])
+  submit = SubmitField('Submit')  

@@ -16,6 +16,11 @@
    <p><a href="{{url_for('main.comments',blog_id = post.id)}}" class="btn btn-info btn-lg"><i class="fa fa-comments-o" aria-hidden="true"></i> Comments</a>  &nbsp;  
     
     <a href="{{url_for('main.delete_blog',blog_id = post.id,user_id = post.user.id)}}" class="btn btn-danger btn-lg"><i class="fa fa-comments-o" aria-hidden="true"></i> Delete this blog</a>
+
+
+    &nbsp;  
+    
+    <a href="{{url_for('main.update_blog',blog_id = post.id,user_id = post.user.id)}}" class="btn btn-success btn-lg"><i class="fa fa-comments-o" aria-hidden="true"></i> update this blog</a>
     </p>
     </div>
     <div class="col-md-4"></div>
