@@ -6,7 +6,7 @@ from app.models import User,Blog
 
 
 # Creating app instance
-app = create_app('test')
+app = create_app('production')
 
 
 

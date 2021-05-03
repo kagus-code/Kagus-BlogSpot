@@ -17,7 +17,8 @@ class Config:
     SIMPLEMDE_USE_CDN = True
     
 class ProdConfig(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
+    
 
 class TestConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kagus:Muraya11$@localhost/blogspot_test'
