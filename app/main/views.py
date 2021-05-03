@@ -122,3 +122,19 @@ def delete_comment(user_id,blog_id):
 
     return redirect(url_for('main.comments',blog_id=blog_id))
 
+
+
+@main.route('/delete_blog/<int:user_id>/<int:blog_id>')
+@login_required
+def delete_blog(user_id,blog_id):
+    blog = Blog.query.get(blog_id)
+    user = Blog.query.get(user_id)
+    blog = Blog.query.filter_by(blog_id=blog_id).first()
+    print(blog)
+
+    
+
+
+
+    return redirect(url_for('main.comments',blog_id=blog_id))
+

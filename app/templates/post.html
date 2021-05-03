@@ -13,8 +13,8 @@
       <br><br>
   <p style="font-size: xx-large;">   {{format_post|safe}}   </p> 
   <br>
-  <a href="{{url_for('main.comments',blog_id = post.id)}}" class="btn btn-info btn-sm"><i class="fa fa-comments-o" aria-hidden="true"></i> Comments</a>
-
+  <a href="{{url_for('main.comments',blog_id = post.id)}}" class="btn btn-info btn-lg"><i class="fa fa-comments-o" aria-hidden="true"></i> Comments</a>
+  <p><a class="btn btn-danger" href="{{url_for('main.delete_blog',blog_id=post.blog.id,user_id=post.blog.user.id)}}" role="button"> Delete this blog-post</a></p>
     </div>
     <div class="col-md-4"></div>
   </div>
