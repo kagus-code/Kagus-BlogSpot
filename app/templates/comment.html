@@ -33,7 +33,7 @@
           <hr>
           <footer class="blockquote-footer">Posted by  {{post_c.user.username}}
            <hr>
-            <p><a class="btn btn-danger" href="#" role="button"> Delete</a></p>
+            <p><a class="btn btn-danger" href="{{url_for('main.delete_comment',blog_id=post_c.blog.id,user_id=post_c.blog.user.id)}}" role="button"> Delete</a></p>
           </footer>
         </blockquote>
       </div>
