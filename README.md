@@ -46,7 +46,7 @@ Additionally, There is a feature that displays random quotes to inspire your use
 
 
 ## link to live site on  HEROKU
-
+https://kagusblog.herokuapp.com/
 
 
 ## Support and contact details
