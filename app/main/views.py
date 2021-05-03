@@ -6,15 +6,17 @@ from flask_login import login_required,current_user
 from ..models import User,Blog,Comment
 import markdown2  
 from ..request import get_quotes
+from ..email import mail_message
 
 @main.route('/')
 def index():
-    all_blogs= Blog.query.all()
+    # all_blogs= Blog.query.all()
+    all_blogs = Blog.query.order_by(Blog.posted.desc()).all()
     
     all_quotes = get_quotes()
     author = all_quotes.get("author")
     quote = all_quotes.get("quote")
-    print(type(all_blogs))
+    
 
 
     title = 'Kagus-BlogSpot Home Page'
@@ -74,6 +76,7 @@ def submit_blog():
         new_blog = Blog(blog_title=blog_title,blog_post=blog_post,user = current_user)
 
         new_blog.save_blog()
+
 
         return redirect(url_for('main.index'))
 
