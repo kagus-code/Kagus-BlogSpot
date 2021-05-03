@@ -127,7 +127,7 @@ def delete_comment(user_id,blog_id):
 
     else:
         print("you cant delete comment")
-        flash('Cannot delete comment,You are not the author of this blog')
+        flash('You cant delete comment,You are not the author of this blog')
 
     return redirect(url_for('main.comments',blog_id=blog_id))
 
