@@ -1,4 +1,4 @@
-from flask import render_template, request,redirect, url_for,abort
+from flask import render_template, request,redirect, url_for,abort,flash
 from .forms import UpdateProfile,SubmitBlog,postComment
 from .. import db,photos
 from . import main
@@ -107,34 +107,24 @@ def comments(blog_id):
     return render_template('comment.html',comments = display_blog_comments,the_blog=blog,form=form)    
 
 
-@main.route('/delete_comment/<int:user_id>/<int:blog_id>')
+@main.route('/delete_comment/<int:user_id>/<int:blog_id>',methods = ['POST','GET'])
 @login_required
 def delete_comment(user_id,blog_id):
     blog = Blog.query.get(blog_id)
-    comment = Comment.query.filter_by(blog_id=blog_id).first()
-
-    print(comment)
-    db.session.delete(comment)
-    db.session.commit()
-    
-
-
-
-    return redirect(url_for('main.comments',blog_id=blog_id))
-
-
-
-@main.route('/delete_blog/<int:user_id>/<int:blog_id>')
-@login_required
-def delete_blog(user_id,blog_id):
-    blog = Blog.query.get(blog_id)
     user = Blog.query.get(user_id)
-    blog = Blog.query.filter_by(blog_id=blog_id).first()
-    print(blog)
-
+    comment = Comment.query.filter_by(blog_id=blog_id).first()
     
 
+    if user_id == current_user.id:
 
+        print(comment)
+        db.session.delete(comment)
+        db.session.commit()
+        return redirect(url_for('main.comments',blog_id=blog_id))
+
+    else:
+        print("you cant delete comment")
+        flash('Cannot delete comment,You are not the author of this blog')
 
     return redirect(url_for('main.comments',blog_id=blog_id))
 
