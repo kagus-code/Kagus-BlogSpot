@@ -9,11 +9,12 @@ from ..request import get_quotes
 
 @main.route('/')
 def index():
-    all_blogs = Blog.query.all()
+    all_blogs= Blog.query.all()
+    
     all_quotes = get_quotes()
     author = all_quotes.get("author")
     quote = all_quotes.get("quote")
-    print(quote)
+    print(type(all_blogs))
 
 
     title = 'Kagus-BlogSpot Home Page'
