@@ -4,54 +4,66 @@
 
 
 
+
+
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+{% endblock %}
+
+
 {% block content %}
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
 
-
-
-      <div class="text-center" style="box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-      0 17px 50px 0 rgba(0, 0, 0, 0.19); font-size: large; margin-left: 20px; max-width: 30rem; ">
-        <div class="card-header">
-          <br>
-          <h3> Random quote </h3>
-        </div>
+<main>
+  <section class="glass">
+   <div class="dashboard">
+     <div class="user">
+       <img src="" alt="">
+       <h3> Random quote </h3>
+       <hr>
+       
+       <p style="font-size: larger;"> {{quote}}</p>
+       <hr>
+       <footer class="blockquote-footer">Author {{author}}
         <hr>
-        <div class="card-body">
-          <blockquote class="blockquote mb-0">
-            <p> {{quote}}</p>
-            <hr>
-            <footer class="blockquote-footer">Author {{author}}
-             <hr>
-            </footer>
-          </blockquote>
-        </div>
-      </div>
+       </footer>
 
+     </div>
+     
+   </div>
 
+   <div class="games">
+     <div class="status">
 
 
      
-    </div>
 
 
 
-  </div>
+       <h1>Available BLogs</h1>
+       
+
+     </div>
+     <div class="cards">
 
 
-
-
-
-</div>
-
-
-
-{% if blogs %}
+       {% if blogs %}
        {{macro.displayBlogs(blogs)}}   
 
       {% endif %}
+
+
+     </div>
+   </div>
+  </section>
+</main> 
+<div class="circle1">
+  
+</div>
+<div class="circle1"></div>
+
 
 
 

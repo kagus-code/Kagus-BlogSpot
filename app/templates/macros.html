@@ -1,6 +1,6 @@
 <!-- Displaying blogs macro -->
 {% macro displayBlogs(blogs_list) %}
-
+<!-- 
     {% for blog in blogs_list %}
 
     <div class="row">
@@ -13,6 +13,21 @@
         <h2> <a href="{{url_for('main.single_post',id=blog.id)}}">{{blog.blog_title}}</a> </h2>
       </div>
     </div>
+
+    {% endfor %} -->
+
+
+
+    {% for blog in blogs_list %}
+
+    <div class="card">
+      <h4>Author of this blog</h4>
+        <p>{{blog.user.username}}</p>
+      <div class="card-info">
+        <h2 style="margin-right: 100px;"> <a href="{{url_for('main.single_post',id=blog.id)}}">{{blog.blog_title}}</a> </h2>
+      </div>
+    </div>
+
 
     {% endfor %}
 {% endmacro %}
