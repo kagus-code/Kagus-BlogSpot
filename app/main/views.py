@@ -69,19 +69,23 @@ def update_pic(uname):
 @login_required
 def submit_blog():
     form = SubmitBlog()
-    if form.validate_on_submit():
-        blog_title = form.blog_title.data
+    if current_user.role == 'writer':
+        if form.validate_on_submit():
+            blog_title = form.blog_title.data
 
-        blog_post=form.blog_post.data
-        new_blog = Blog(blog_title=blog_title,blog_post=blog_post,user = current_user)
+            blog_post=form.blog_post.data
+            new_blog = Blog(blog_title=blog_title,blog_post=blog_post,user = current_user)
 
-        new_blog.save_blog()
+            new_blog.save_blog()
 
 
-        return redirect(url_for('main.index'))
+            return redirect(url_for('main.index'))
 
-    return render_template ('submit_blog.html',blog_form=form)
+        return render_template ('submit_blog.html',blog_form=form)
+    else:
+        flash('You are not Registered as a writer please sign up as a Writer')
 
+    return redirect(url_for('main.index'))
 
 @main.route('/post/<int:id>')
 def single_post(id):
